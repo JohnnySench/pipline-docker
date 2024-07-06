@@ -1,0 +1,1 @@
+export {default as customProfile} from './customProfile.vue';
