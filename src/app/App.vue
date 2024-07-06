@@ -1,8 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <input class="ex" placeholder="rere" />
-  <div></div>
+  <router-view />
 </template>
 
 <style scoped lang="postcss">
