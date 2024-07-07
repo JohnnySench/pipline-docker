@@ -1,0 +1,1 @@
+export {default as customNavigation} from './navigation.vue'
