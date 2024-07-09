@@ -6,6 +6,7 @@ type TIconPosition = "left" | "right";
 
 interface ICustomInput extends Partial<IPropsCustomIcon> {
   innerIcon?: boolean,
+  labelVisible?: boolean
   label?: string,
   iconPosition?: TIconPosition,
   iconMargin?: number,
@@ -18,6 +19,7 @@ interface IEmits extends IEmitsCustomIcon {
 const props = withDefaults(defineProps<ICustomInput>(), {
   innerIcon: false,
   label: "",
+  labelVisible: true,
   iconPosition: "left"
 });
 const emits = defineEmits<IEmits>();
@@ -60,6 +62,7 @@ const inputPaddingComputed = computed(() => {
       :class="`p${iconPositionComputed![0]}-${inputPaddingComputed}`"
     />
     <label
+      v-if="labelVisible"
       v-html="label"
       for="input"
       class="absolute top-1/2 left-14 transform -translate-y-1/2 px-1.5 pointer-events-none transition-all duration-500"

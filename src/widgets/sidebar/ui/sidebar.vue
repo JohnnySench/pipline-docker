@@ -17,8 +17,8 @@ const {isVisible} = storeToRefs(useSidebarStore());
        :class="[isVisible ? 'w-[335px]' : 'w-[104px]']"
        @mouseenter="() => setVisible(true)"
        @mouseleave="() => setVisible(false)">
-    <custom-profile class="mb-11" />
-    <custom-input class="mb-11" :name="'search'" label="Search" inner-icon :icon-position="'left'" />
+    <custom-profile :visible-text="isVisible" class="mb-11" />
+    <custom-input :labelVisible="isVisible" class="mb-11" :name="'search'" label="Search" inner-icon :icon-position="'left'" />
     <custom-navigation :full-width="isVisible"/>
   </div>
 </template>
