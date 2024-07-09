@@ -58,7 +58,7 @@ const inputPaddingComputed = computed(() => {
       required
       type="text"
       id="input"
-      class="h-14 px-2 w-full bg-gray-100 outline-0 rounded-2xl"
+      class="h-14 px-4 w-full bg-gray-100 outline-0 rounded-2xl"
       :class="`p${iconPositionComputed![0]}-${inputPaddingComputed}`"
     />
     <label

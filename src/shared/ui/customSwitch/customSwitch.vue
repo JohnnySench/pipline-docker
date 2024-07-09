@@ -4,7 +4,7 @@ interface IEmits {
   (e: "update:modelValue", payload: boolean): void;
 }
 
-const modelValue = defineModel('modelValue')
+const modelValue = defineModel("modelValue");
 const emits = defineEmits<IEmits>();
 const update = (e: Event): void => {
   const target = e.target as HTMLInputElement;
@@ -14,7 +14,13 @@ const update = (e: Event): void => {
 
 <template>
   <div class="container flex">
-    <input v-model="modelValue" type="checkbox" id="check" class="hidden" @change="update">
+    <input
+      v-model="modelValue"
+      type="checkbox"
+      id="check"
+      class="hidden"
+      @change="update"
+    >
     <label for="check"
            class="bg-[#d2d2d2] w-14 h-8 rounded-2xl cursor-pointer relative duration-200" />
   </div>
