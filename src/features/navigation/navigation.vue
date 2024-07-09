@@ -46,7 +46,7 @@ const navItems = computed(() => {
       text: "Logout",
       icon: "logout",
       action: () => router.push({
-        name: "login"
+        name: "auth"
       })
     },
     {

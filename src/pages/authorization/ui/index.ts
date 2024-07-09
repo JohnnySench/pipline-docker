@@ -1,0 +1,1 @@
+export {default as authorizationPage} from './index.vue';

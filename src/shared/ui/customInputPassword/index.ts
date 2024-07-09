@@ -1,0 +1,1 @@
+export {default as customInputPassword} from './customInputPassword.vue';
