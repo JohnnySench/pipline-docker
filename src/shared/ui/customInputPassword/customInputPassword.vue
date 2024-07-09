@@ -46,33 +46,35 @@ const hiddenPassword = (e: Event) => {
 </script>
 
 <template>
-  <div class="container relative">
+  <div class="container top-6 h-10 relative bg-gray-100">
     <input
       v-model="modelValue"
+      required
       id="inputPassword"
       :type="typeInputPassword"
+      class="w-full border-0 outline-0 absolute top-1/2 -translate-y-1/2 bg-transparent"
       @input="updateValue"
     >
     <label
       v-if="Boolean(labelText)"
       for="inputPassword"
       v-html="labelText"
-      class="absolute top-1/2 -translate-y-1/2"
+      class="absolute top-1/2 left-4 -translate-y-1/2 transform transition-all duration-200"
     />
     <custom-icon
       v-if="typeInputPassword === 'password'"
       :name="name"
       :size="size"
       :variant="variant"
-      class="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer select-none"
-      @click:icon="(e) => showPassword(e)"
+      class="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer select-none"
+      @click:icon="(e: Event) => showPassword(e)"
     />
     <custom-icon
       v-else
       :name="iconNameVisibility"
       :size="size"
       :variant="variant"
-      class="absolute right-10 top-1/2 -translate-y-1/2 cursor-pointer select-none"
+      class="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer select-none"
       @click:icon="(e: Event) => hiddenPassword(e)"
     />
 
@@ -80,5 +82,8 @@ const hiddenPassword = (e: Event) => {
 </template>
 
 <style scoped lang="postcss">
-
+.container #inputPassword:focus ~ label,
+.container #inputPassword:valid ~ label {
+  @apply -top-1
+}
 </style>
