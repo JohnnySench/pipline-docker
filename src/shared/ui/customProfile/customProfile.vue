@@ -12,7 +12,7 @@ withDefaults(defineProps<IPropsLogo>(), {
 </script>
 
 <template>
-  <div class="flex justify-center items-center gap-2">
+  <div class="flex items-center gap-2">
     <logo />
     <div class="flex flex-col">
       <span class="font-bold">{{ name }}</span>

@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { customInput } from "@shared/ui/customInput";
-import { customProfile } from "@shared/ui/customProfile";
-import { customNavigation } from "@/features/navigation";
+import {customSidebar} from '@widgets/sidebar/ui'
 </script>
 
 <template>
   <div class="h-screen w-screen bg-gray-100">
-    <div class="h-screen bg-white p-6 w-[335px] overflow-hidden">
-      <custom-profile class="mb-11" />
-      <custom-input class="mb-11" :name="'search'" label="Search" inner-icon icon-position="left" />
-      <custom-navigation />
-    </div>
+    <custom-sidebar />
   </div>
 
 </template>
 
-<style scoped></style>
+<style scoped lang="postcss">
+
+</style>

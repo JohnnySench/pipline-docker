@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { computed, shallowRef } from "vue";
 import { useRouter } from "vue-router";
-import {customSwitch} from '@shared/ui/customSwitch'
+import { customSwitch } from "@shared/ui/customSwitch";
 
+interface IProps {
+  fullWidth: boolean;
+}
+
+const props = defineProps<IProps>();
 
 const router = useRouter();
 
-const switchLightMode = shallowRef(true)
+const switchLightMode = shallowRef(true);
 
 const navItems = computed(() => {
   return [
@@ -48,12 +53,10 @@ const navItems = computed(() => {
       text: "Light mode",
       icon: "light_mode",
       action: () => {
-        console.log(1);
         switchLightMode.value = !switchLightMode.value;
-        console.log(switchLightMode.value);
       },
       switch: true
-    },
+    }
   ];
 });
 
@@ -65,21 +68,24 @@ const navItems = computed(() => {
     <div
       v-for="(item, index) in navItems"
       :key="index"
-      class="p-4 flex flex-row items-center cursor-pointer"
-
+      class="p-4 flex flex-row items-center cursor-pointer hover:bg-gray-100 hover:rounded-2xl"
     >
-      <div class="flex gap-4  justify-center" @click="item.action">
-        <span class="material-icons-outlined">{{ item.icon }}</span>
-        <span>{{ item.text }}</span>
+      <div class="flex gap-4 justify-center text-nowrap" @click="item.action">
+        <span :class="{'!hidden !p-0': item?.switch && !fullWidth}"
+              class="material-icons-outlined">{{ item.icon }}
+        </span>
+        <span v-if="fullWidth">{{ item.text }}</span>
       </div>
 
-      <div v-if="item?.switch" class="ml-5">
-        <custom-switch v-model="switchLightMode"/>
+      <div v-if="item?.switch"
+           class="ml-5 transition-all duration-200"
+           :class="{'-ml-4': !fullWidth}">
+        <custom-switch v-model="switchLightMode" />
       </div>
     </div>
   </nav>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 
 </style>
