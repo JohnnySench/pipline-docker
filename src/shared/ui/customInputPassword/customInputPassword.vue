@@ -60,6 +60,7 @@ const hiddenPassword = (e: Event) => {
       class="absolute top-1/2 -translate-y-1/2"
     />
     <custom-icon
+      v-if="typeInputPassword === 'password'"
       :name="name"
       :size="size"
       :variant="variant"
@@ -67,6 +68,7 @@ const hiddenPassword = (e: Event) => {
       @click:icon="(e) => showPassword(e)"
     />
     <custom-icon
+      v-else
       :name="iconNameVisibility"
       :size="size"
       :variant="variant"
