@@ -76,10 +76,9 @@ const navItems = computed(() => {
         </span>
         <span v-if="fullWidth">{{ item.text }}</span>
       </div>
-
       <div v-if="item?.switch"
            class="ml-5 transition-all duration-200"
-           :class="{'-ml-4': !fullWidth}">
+           :class="{'!-ml-4': !fullWidth}">
         <custom-switch v-model="switchLightMode" />
       </div>
     </div>

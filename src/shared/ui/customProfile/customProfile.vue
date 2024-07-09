@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { logo } from "@shared/icons/logo";
+import {customTooltip} from "@shared/ui/customTooltip";
 interface IPropsLogo {
   name?: string;
   email?: string;
@@ -16,12 +17,14 @@ withDefaults(defineProps<IPropsLogo>(), {
 <template>
   <div class="flex items-center gap-2">
     <logo />
-    <div class="flex flex-col transition-all duration-300"
-      :class="{'opacity-0': !visibleText}"
-    >
-      <span class="font-bold">{{ name }}</span>
-      <span>{{ email }}</span>
-    </div>
+    <custom-tooltip :text="name">
+      <div class="flex flex-col transition-all duration-300"
+           :class="{'opacity-0': !visibleText}"
+      >
+        <span class="font-bold">{{ name }}</span>
+        <span>{{ email }}</span>
+      </div>
+    </custom-tooltip>
   </div>
 </template>
 
