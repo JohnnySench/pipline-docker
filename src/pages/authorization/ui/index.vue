@@ -2,6 +2,7 @@
 import { customInputPassword } from "@shared/ui/customInputPassword";
 import { customInput } from "@shared/ui/customInput";
 import { shallowRef } from "vue";
+import CustomDropdown from "@shared/ui/customDropdown/customDropdown.vue";
 
 const password = shallowRef("");
 const login = shallowRef("");
@@ -24,6 +25,8 @@ const login = shallowRef("");
       label="Enter login"
       label-visible
     />
+
+    <custom-dropdown />
   </div>
 
 </template>
