@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "/api",
+const instanceAuth = axios.create({
+  baseURL: "https://identitytoolkit.googleapis.com/v1/",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
     "X-Requested-With": "XMLHttpRequest",
   },
-  withCredentials: true,
+  // withCredentials: true, cors отключил
   withXSRFToken: true,
 });
 
-instance.interceptors.response.use(
+instanceAuth.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -25,4 +25,4 @@ instance.interceptors.response.use(
   },
 );
 
-export { instance };
+export { instanceAuth };

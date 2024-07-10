@@ -3,9 +3,19 @@ import { customInputPassword } from "@shared/ui/customInputPassword";
 import { customInput } from "@shared/ui/customInput";
 import { shallowRef } from "vue";
 import CustomDropdown from "@shared/ui/customDropdown/customDropdown.vue";
+import { signUp } from "@shared/api/auth/api/server.ts";
+
 
 const password = shallowRef("");
 const login = shallowRef("");
+
+const submit = async () => {
+  const data = {
+    email: login.value,
+    password: password.value,
+  }
+  await signUp(data);
+};
 </script>
 
 <template>
@@ -25,6 +35,8 @@ const login = shallowRef("");
       label="Enter login"
       label-visible
     />
+
+    <button @click="submit">CLICK</button>
 
     <custom-dropdown />
   </div>
