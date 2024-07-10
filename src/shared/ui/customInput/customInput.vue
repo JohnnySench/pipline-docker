@@ -24,14 +24,7 @@ const props = withDefaults(defineProps<ICustomInput>(), {
 });
 const emits = defineEmits<IEmits>();
 
-const inputValueComputed = computed({
-  get: (value) => {
-    return value;
-  },
-  set: (newValue) => {
-    emits("update:modelValue", newValue as string);
-  }
-});
+const modelValue = defineModel('modelValue')
 
 const iconPositionComputed = computed(() => {
   if (props.iconPosition === "left") return "left-4";
@@ -49,17 +42,23 @@ const inputPaddingComputed = computed(() => {
   return padding;
 });
 
+const updateValue = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  emits('update:modelValue', target.value)
+}
+
 </script>
 
 <template>
   <div class="container relative">
     <input
-      v-model="inputValueComputed"
+      :value="modelValue"
       required
       type="text"
       id="input"
       class="h-14 px-4 w-full bg-gray-100 outline-0 rounded-2xl"
       :class="`p${iconPositionComputed![0]}-${inputPaddingComputed}`"
+      @input="(e) => updateValue(e)"
     />
     <label
       v-if="labelVisible"

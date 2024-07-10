@@ -4,7 +4,8 @@ import type { MaterialIcon as TMaterialIcon } from "@material-design-icons/font"
 import { shallowRef } from "vue";
 
 interface IPropsCustomInputPassword extends IPropsCustomIcon {
-  labelText: string,
+  width?: string,
+  labelText?: string,
   iconNameVisibility: TMaterialIcon,
 }
 
@@ -17,9 +18,12 @@ interface IEmitsCustomInputPassword {
   (e: "click:show", value: boolean): void;
 }
 
-const props = defineProps<IPropsCustomInputPassword>();
+const props = withDefaults(defineProps<IPropsCustomInputPassword>(), {
+  labelText: "Password"
+});
 const emits = defineEmits<IEmitsCustomInputPassword>();
-const modelValue = defineModel("modelValue");
+
+const modelValue = defineModel('modelValue')
 
 const updateValue = (e: Event) => {
   const target = e.target as HTMLInputElement;
@@ -31,28 +35,25 @@ const typeInputPassword = shallowRef("password");
 
 const showPassword = (e: Event) => {
   typeInputPassword.value = "text";
-  const target = e.target as HTMLInputElement;
-  emits("update:modelValue", target.value);
   emits("click:show", true);
 };
 
 const hiddenPassword = (e: Event) => {
   typeInputPassword.value = "password";
-  const target = e.target as HTMLInputElement;
-  emits("update:modelValue", target.value);
   emits("click:show", false);
 };
 
 </script>
 
 <template>
-  <div class="container top-6 h-10 relative bg-gray-100">
+  <div class="container px-4 rounded-2xl top-6 h-10 relative bg-gray-100">
     <input
-      v-model="modelValue"
+      :value="modelValue"
       required
       id="inputPassword"
       :type="typeInputPassword"
       class="w-full border-0 outline-0 absolute top-1/2 -translate-y-1/2 bg-transparent"
+      :class="[width]"
       @input="updateValue"
     >
     <label
@@ -84,6 +85,6 @@ const hiddenPassword = (e: Event) => {
 <style scoped lang="postcss">
 .container #inputPassword:focus ~ label,
 .container #inputPassword:valid ~ label {
-  @apply -top-1
+  @apply top-0 text-xs
 }
 </style>
