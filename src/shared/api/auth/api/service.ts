@@ -8,9 +8,8 @@ export const signUp = async (payload: ISignUp): TResponseUndefined<IResponseSign
         ...payload,
         returnSecureToken: true
       });
-    console.log(response);
     return response.data;
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    throw Error(e);
   }
 };

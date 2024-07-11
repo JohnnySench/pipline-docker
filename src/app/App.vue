@@ -10,6 +10,7 @@ onMounted(() => {
   setPlatform(window.innerWidth);
   window.addEventListener("resize", onResize);
 });
+
 onUnmounted(() => {
   window.removeEventListener("resize", onResize);
 });
