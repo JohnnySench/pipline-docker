@@ -4,15 +4,15 @@ import { customInput } from "@shared/ui/customInput";
 import { shallowRef } from "vue";
 import CustomDropdown from "@shared/ui/customDropdown/customDropdown.vue";
 
+import {useAuthorizationStore} from '@shared/api/auth/model/store'
+import { useAlert } from "@shared/hooks";
+const store = useAuthorizationStore()
 
 const password = shallowRef("");
 const login = shallowRef("");
 
-const submit = async () => {
-  const data = {
-    email: login.value,
-    password: password.value,
-  }
+const submit = () => {
+  useAlert('success', 'Hello', 5000)
 
 
 };
@@ -20,6 +20,7 @@ const submit = async () => {
 
 <template>
   <div class="flex flex-col gap-8 w-[200px]">
+    {{store.userInfo}}
     <custom-input-password
       v-model="password"
       label-text="Enter password"
@@ -39,6 +40,7 @@ const submit = async () => {
     <button @click="submit">CLICK</button>
 
     <custom-dropdown />
+
   </div>
 
 </template>
