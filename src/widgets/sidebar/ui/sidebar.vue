@@ -6,11 +6,12 @@ import { customNavigation } from "@/features/navigation";
 
 import { useSidebarStore } from "../model";
 import { storeToRefs } from "pinia";
+import { shallowRef } from "vue";
 
 const { setVisible } = useSidebarStore();
 const { isVisible } = storeToRefs(useSidebarStore());
 
-
+const searchValue = shallowRef('')
 </script>
 
 <template>
@@ -23,6 +24,7 @@ const { isVisible } = storeToRefs(useSidebarStore());
       class="mb-11"
     />
     <custom-input
+      v-model="searchValue"
       :labelVisible="isVisible"
       class="mb-11"
       :name="'search'"

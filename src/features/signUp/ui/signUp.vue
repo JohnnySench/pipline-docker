@@ -1,54 +1,53 @@
 <script setup lang="ts">
-import { customButton } from "@shared/ui/customButton";
 import { customSwitch } from "@shared/ui/customSwitch";
 import { customInput } from "@shared/ui/customInput";
 import { customInputPassword } from "@shared/ui/customInputPassword";
 import { shallowRef } from "vue";
+import { authForm } from "@shared/ui/authForm";
 
 const rememberMe = shallowRef(false);
-const password = shallowRef('');
-const email = shallowRef('');
+const password = shallowRef("");
+const email = shallowRef("");
+
+
+const defaultSubmit = () => {
+  console.log("sign def");
+};
+const googleSubmit = () => {
+  console.log("sign google");
+};
 </script>
 
 <template>
-  <div class="container p-12 rounded-3xl max-h-[900px] w-[456px] bg-white">
-    <div class="flex items-center gap-2.5 select-none mb-12">
-      <img src="@assets/authIcon.jpg" alt="auth">
-      <span class="font-bold">Multi Flow</span>
-    </div>
-    <h1 class="font-bold text-xl mb-11">Nice to see you again</h1>
-    <div class="flex flex-col gap-6">
-      <custom-input v-model="email"/>
+  <auth-form
+    title="Nice to see you again"
+    :sign-in="false"
+    @click:default-sign="defaultSubmit"
+    @click:google-sign="googleSubmit"
+  >
+    <template #content>
+      <div class="flex flex-col gap-6">
+        <custom-input v-model="email" />
 
-      <custom-input-password
-        v-model="password"
-        label-text="Enter password"
-        name="visibility"
-        icon-name-visibility="visibility_off"
-        variant="filled"
-      />
+        <custom-input-password
+          v-model="password"
+          label-text="Enter password"
+          name="visibility"
+          icon-name-visibility="visibility_off"
+          variant="filled"
+        />
 
-      <div class="mt-6 flex items-center justify-between flex-nowrap">
-        <div class="flex flex-row items-center gap-2">
-          <custom-switch size="medium" class="w-min" v-model="rememberMe" />
-          <span class="text-xs cursor-pointer select-none" @click="rememberMe = !rememberMe">Remember me</span>
+        <div class="mt-6 flex items-center justify-between flex-nowrap">
+          <div class="flex flex-row items-center gap-2">
+            <custom-switch size="small" class="w-min" v-model="rememberMe" />
+            <span class="text-xs cursor-pointer select-none" @click="rememberMe = !rememberMe">Remember me</span>
+          </div>
+          <span
+            class="text-[#007AFF] text-xs hover:underline hover:underline-offset-2 cursor-pointer">Forgot password?</span>
         </div>
-        <span class="text-[#007AFF] text-xs hover:underline hover:underline-offset-2 cursor-pointer">Forgot password?</span>
       </div>
-
-      <custom-button color="primary">
-        <span class="font-bold text-white">Sign in</span>
-      </custom-button>
-    </div>
-
-    <hr class="!h-[1px] my-8 text-black bg-black" />
-
-
-    <custom-button color="dark">
-      <img src="@assets/googleIcon2.png" alt="google">
-      <span class="text-white">Or sign in with Google</span>
-    </custom-button>
-  </div>
+    </template>
+  </auth-form>
 </template>
 
 <style scoped>

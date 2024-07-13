@@ -46,7 +46,7 @@ const navItems = computed(() => {
       text: "Logout",
       icon: "logout",
       action: () => router.push({
-        name: "auth"
+        name: "signUp"
       })
     },
     {
@@ -64,11 +64,11 @@ const navItems = computed(() => {
 </script>
 
 <template>
-  <nav class="flex flex-col gap-6">
+  <nav class="flex flex-col gap-4">
     <div
       v-for="(item, index) in navItems"
       :key="index"
-      class="p-4 flex flex-row items-center cursor-pointer hover:bg-gray-100 hover:rounded-2xl"
+      class="py-3 px-4 flex flex-row items-center cursor-pointer hover:bg-gray-100 hover:rounded-2xl"
     >
       <div class="flex gap-4 justify-center text-nowrap" @click="item.action">
         <span :class="{'!hidden !p-0': item?.switch && !fullWidth}"

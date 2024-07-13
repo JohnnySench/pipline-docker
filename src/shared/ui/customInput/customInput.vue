@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { customIcon, type IEmitsCustomIcon, type IPropsCustomIcon } from "@shared/ui/customIcon";
+import {type TSize} from "@shared/types";
 
 type TIconPosition = "left" | "right";
 
@@ -10,6 +11,7 @@ interface ICustomInput extends Partial<IPropsCustomIcon> {
   label?: string,
   iconPosition?: TIconPosition,
   iconMargin?: number,
+  sizeComponent?: TSize,
 }
 
 interface IEmits extends IEmitsCustomIcon {
@@ -20,7 +22,8 @@ const props = withDefaults(defineProps<ICustomInput>(), {
   innerIcon: false,
   label: "",
   labelVisible: true,
-  iconPosition: "left"
+  iconPosition: "left",
+  sizeComponent: "medium",
 });
 const emits = defineEmits<IEmits>();
 
@@ -30,6 +33,13 @@ const iconPositionComputed = computed(() => {
   if (props.iconPosition === "left") return "left-4";
   if (props.iconPosition === "right") return "right-4";
 });
+
+const sizeComponent = computed(() => {
+  if (typeof props.sizeComponent === 'number') return `h-${props.sizeComponent}`;
+  if (props.sizeComponent === "small") return "h-10";
+  if (props.sizeComponent === "medium") return "h-12";
+  if (props.sizeComponent === "large") return "h-14";
+})
 
 const inputPaddingComputed = computed(() => {
   let padding = 0;
@@ -56,8 +66,8 @@ const updateValue = (e: Event) => {
       required
       type="text"
       id="input"
-      class="h-14 px-4 w-full bg-gray-100 outline-0 rounded-2xl"
-      :class="`p${iconPositionComputed![0]}-${inputPaddingComputed}`"
+      class="px-4 w-full bg-gray-100 outline-0 rounded-2xl"
+      :class="[`p${iconPositionComputed![0]}-${inputPaddingComputed}`, sizeComponent]"
       @input="(e) => updateValue(e)"
     />
     <label
