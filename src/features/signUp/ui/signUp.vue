@@ -27,8 +27,11 @@ const googleSubmit = () => {
   >
     <template #content>
       <div class="flex flex-col gap-6">
-        <custom-input v-model="email" label-visible label="Login"/>
-
+        <custom-input
+          v-model="email"
+          label-visible
+          label="Login"
+        />
         <custom-input-password
           v-model="password"
           label-text="Enter password"
@@ -36,14 +39,22 @@ const googleSubmit = () => {
           icon-name-visibility="visibility_off"
           variant="filled"
         />
-
         <div class="mt-6 flex items-center justify-between flex-nowrap">
           <div class="flex flex-row items-center gap-2">
-            <custom-switch size="small" class="w-min" v-model="rememberMe" />
-            <span class="text-xs cursor-pointer select-none" @click="rememberMe = !rememberMe">Remember me</span>
+            <custom-switch
+              size="small"
+              class="w-min"
+              v-model="rememberMe"
+            />
+            <span
+              class="text-xs cursor-pointer select-none"
+              @click="rememberMe = !rememberMe"
+              v-html="'Remember me'"
+            />
           </div>
           <span
-            class="text-[#007AFF] text-xs hover:underline hover:underline-offset-2 cursor-pointer">Forgot password?</span>
+            class="text-[#007AFF] text-xs hover:underline
+            hover:underline-offset-2 cursor-pointer">Forgot password?</span>
         </div>
       </div>
     </template>

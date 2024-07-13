@@ -3,6 +3,7 @@ import HomeView from "@/pages/HomeView.vue";
 import EditorView from "@/pages/EditorView.vue";
 import {authorizationPage} from '@pages/authorization/ui'
 import SignUpView from "@pages/SignUpView.vue";
+import ExampleView from "@pages/ExampleView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/sign-up",
       name: "signUp",
       component: SignUpView,
+    },
+    {
+      path: "/example",
+      name: "example",
+      component: ExampleView,
     },
   ],
 });
