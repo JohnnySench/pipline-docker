@@ -1,0 +1,1 @@
+export {default as signUpForm} from './signUp.vue'

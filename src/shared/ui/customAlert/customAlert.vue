@@ -17,7 +17,6 @@ type TIconName = "info" | "warning" | "check_circle"
 const props = defineProps<IPropsCustomAlert>();
 const emits = defineEmits<IEmitsCustomAlert>();
 const iconSetting = computed(() => {
-  console.log(1);
   if (props.type === "info") {
     return {
       iconName: "info" as TIconName,

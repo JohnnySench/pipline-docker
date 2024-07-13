@@ -46,6 +46,12 @@
       ],
       "@entities/*": [
         "./src/entities/*"
+      ],
+      "@features/*": [
+        "./src/features/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
       ]
     }
   },
