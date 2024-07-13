@@ -1,5 +1,5 @@
 import { createApp, markRaw } from "vue";
-import "@/app/style.pcss";
+import "@/app/styles/index.pcss";
 import App from "@app/App.vue";
 import router from "@/app/router";
 import store from "@app/store";
