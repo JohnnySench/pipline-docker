@@ -41,14 +41,11 @@ const dragEnd = (e: MouseEvent) => {
   isDragStart.value = false;
 };
 
-const slideClick = (e: MouseEvent) => {
 
-};
-
-const clickOnPrev = (e) => {
+const clickOnPrev = () => {
   carouselRef.value!.scrollLeft -= firstSlideWidth.value as number;
 };
-const clickOnNext = (e) => {
+const clickOnNext = () => {
   carouselRef.value!.scrollLeft += firstSlideWidth.value as number;
 };
 
@@ -90,15 +87,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative wrapper border mx-6 max-w-[600px]" @mouseleave="dragEnd">
+  <div class="relative flex items-center wrapper w-[984px] h-[630px]" @mouseleave="dragEnd">
     <div
       ref="carouselRef"
       @mousemove.prevent="dragging"
       @mousedown.stop.prevent="dragStart"
       @mouseup.stop.prevent="dragEnd"
-      class="carousel select-none flex flex-row overflow-hidden" :class="{'scroll-smooth': !isDragStart}">
-      <img ref="slidesRef" v-for="item in items" :key="item.id" :src="item.img"
-           class="slide cursor-pointer w-[calc(100%)] h-[340px] object-cover " />
+      class="carousel select-none rounded-l-3xl h-full flex flex-row overflow-hidden"
+      :class="{'scroll-smooth': !isDragStart}">
+      <img ref="slidesRef"
+           v-for="item in items" :key="item.id" :src="item.img"
+           class="slide cursor-pointer w-[calc(100%)] object-cover " />
       <div
         @mouseup.stop
         @mousedown.stop

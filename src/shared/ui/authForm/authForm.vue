@@ -23,7 +23,7 @@ const textSign = computed(() => {
 </script>
 
 <template>
-  <div class="container p-12 rounded-3xl max-h-[900px] w-[456px] bg-white">
+  <div class="container p-12 rounded-r-3xl max-h-[900px] w-[456px] bg-white">
     <div class="flex items-center gap-2.5 select-none mb-12">
       <img src="@assets/authIcon.jpg" alt="auth">
       <span class="font-bold">Multi Flow</span>
