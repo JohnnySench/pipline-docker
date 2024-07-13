@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { customIcon, type IPropsCustomIcon } from "@shared/ui/customIcon";
 import type { MaterialIcon as TMaterialIcon } from "@material-design-icons/font";
-import { shallowRef } from "vue";
+import { computed, shallowRef } from "vue";
+import { TSize } from "@shared/types";
 
 interface IPropsCustomInputPassword extends IPropsCustomIcon {
   width?: string,
   labelText?: string,
   iconNameVisibility: TMaterialIcon,
+  sizeComponent?: TSize
 }
 
 
@@ -19,11 +21,19 @@ interface IEmitsCustomInputPassword {
 }
 
 const props = withDefaults(defineProps<IPropsCustomInputPassword>(), {
-  labelText: "Password"
+  labelText: "Password",
+  sizeComponent: 'medium'
 });
 const emits = defineEmits<IEmitsCustomInputPassword>();
 
 const modelValue = defineModel('modelValue')
+
+const sizeComponent = computed(() => {
+  if (typeof props.sizeComponent === 'number') return `h-${props.sizeComponent}`;
+  if (props.sizeComponent === "small") return "h-10";
+  if (props.sizeComponent === "medium") return "h-12";
+  if (props.sizeComponent === "large") return "h-14";
+})
 
 const updateValue = (e: Event) => {
   const target = e.target as HTMLInputElement;
@@ -46,7 +56,7 @@ const hiddenPassword = (e: Event) => {
 </script>
 
 <template>
-  <div class="container px-4 rounded-2xl top-6 h-10 relative bg-gray-100">
+  <div class="container px-4 rounded-2xl top-6 relative bg-gray-100" :class="[sizeComponent]">
     <input
       :value="modelValue"
       required

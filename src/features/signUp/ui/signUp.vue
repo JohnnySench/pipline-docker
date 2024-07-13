@@ -27,7 +27,7 @@ const googleSubmit = () => {
   >
     <template #content>
       <div class="flex flex-col gap-6">
-        <custom-input v-model="email" />
+        <custom-input v-model="email" label-visible label="Login"/>
 
         <custom-input-password
           v-model="password"

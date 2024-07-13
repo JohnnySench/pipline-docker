@@ -74,14 +74,14 @@ const updateValue = (e: Event) => {
       v-if="labelVisible"
       v-html="label"
       for="input"
-      class="absolute top-1/2 left-14 transform -translate-y-1/2 px-1.5 pointer-events-none transition-all duration-500"
-      :class="inputPaddingComputed"
+      class="absolute top-1/2 left-4 transform -translate-y-1/2 px-1.5 pointer-events-none transition-all duration-200"
+      :class="[inputPaddingComputed]"
     />
     <custom-icon
       v-if="innerIcon"
       :name="name"
       :variant="variant"
-      :class="iconPositionComputed"
+      :class="[iconPositionComputed]"
       @click:icon="(e) => emits('click:icon', e)"
       class="icon absolute top-1/2 transform -translate-y-1/2 transition-all duration-200"
     />
@@ -91,7 +91,7 @@ const updateValue = (e: Event) => {
 <style scoped lang="postcss">
 .container #input:focus ~ label,
 .container #input:valid ~ label {
-  @apply top-1 left-8 bg-gray-100 rounded text-xs;
+  @apply top-0 text-xs;
 }
 
 .container #input:focus ~ .icon,
