@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, shallowRef } from "vue";
+import { onMounted, onUnmounted, ref, shallowRef } from "vue";
 import CustomIcon from "@shared/ui/customIcon/customIcon.vue";
 
 type TSlide = {
@@ -14,7 +14,10 @@ interface IPropsCustomSlider {
   duration?: number,
 }
 
-const props = defineProps<IPropsCustomSlider>();
+const props = withDefaults(defineProps<IPropsCustomSlider>(), {
+  autoplay: false,
+  duration: 5000.
+});
 
 const carouselRef = ref<null | HTMLElement>(null);
 const isDragStart = shallowRef(false);
@@ -60,8 +63,27 @@ const searchElWidth = () => {
     }
   });
 };
+const interval = shallowRef<ReturnType<typeof setInterval> | null>(null);
+const autoplay = () => {
+  if (props.autoplay) {
+    interval.value = setInterval(() => {
+      if (!carouselRef.value!.matches(":hover")) {
+        carouselRef.value!.scrollLeft += firstSlideWidth.value as number;
+      }
+    }, props.duration);
+  }
+
+};
+
 onMounted(() => {
   searchElWidth();
+  autoplay();
+});
+
+onUnmounted(() => {
+  if (interval.value) {
+    clearInterval(interval.value);
+  }
 });
 
 
@@ -74,7 +96,7 @@ onMounted(() => {
       @mousemove.prevent="dragging"
       @mousedown.stop.prevent="dragStart"
       @mouseup.stop.prevent="dragEnd"
-      class="carousel  select-none flex flex-row overflow-hidden" :class="{'scroll-smooth': !isDragStart}">
+      class="carousel select-none flex flex-row overflow-hidden" :class="{'scroll-smooth': !isDragStart}">
       <img ref="slidesRef" v-for="item in items" :key="item.id" :src="item.img"
            class="slide cursor-pointer w-[calc(100%)] h-[340px] object-cover " />
       <div

@@ -14,7 +14,7 @@ const items = ref([
 
 <template>
   <div class="h-screen flex items-center justify-center">
-    <custom-slider :items="items" />
+    <custom-slider :items="items" autoplay/>
   </div>
 
 </template>
