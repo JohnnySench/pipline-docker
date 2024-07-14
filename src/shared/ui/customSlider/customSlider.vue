@@ -80,8 +80,6 @@ const scrollByWheel = (e: WheelEvent) => {
   } else {
     carouselRef.value!.scrollLeft -= firstSlideWidth.value as number;
   }
-
-
 }
 
 onMounted(() => {
@@ -99,7 +97,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative flex items-center wrapper w-[984px] h-[630px]" @mouseleave="dragEnd">
+  <div class="relative container flex items-center max-w-[984px] h-[630px]" @mouseleave="dragEnd">
     <div
       ref="carouselRef"
       @mousemove.prevent="dragging"
@@ -110,7 +108,7 @@ onUnmounted(() => {
       :class="{'scroll-smooth': !isDragStart}">
       <img ref="slidesRef"
            v-for="item in items" :key="item.id" :src="item.img"
-           class="slide cursor-pointer w-[calc(100%)] object-cover " />
+           class="slide cursor-pointer object-cover " />
       <div
         @mouseup.stop
         @mousedown.stop
