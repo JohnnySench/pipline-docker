@@ -5,6 +5,17 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  server: {
+    watch: {
+      usePolling: true
+    },
+    host: true,
+    strictPort: true,
+    port: 5173,
+    hmr: {
+      overlay: true,
+    }
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -15,7 +26,7 @@ export default defineConfig({
       "@features": path.resolve(__dirname, "src/features"),
       "@entities": path.resolve(__dirname, "src/entities"),
       "@layouts": path.resolve(__dirname, "src/layouts"),
-      "@assets": path.resolve(__dirname, "src/assets"),
-    },
-  },
+      "@assets": path.resolve(__dirname, "src/assets")
+    }
+  }
 });
