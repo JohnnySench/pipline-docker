@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules  # избегаем проблем с правами доступа
+    ports:
+      - "3000:5173"  # Пробросим порт для доступа к приложению
+    command: ["npm", "run", "dev"]

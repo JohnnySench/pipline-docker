@@ -1,4 +1,45 @@
+# Node.js модульные каталоги
 node_modules
-.git
-.idea
+npm-debug.log
+yarn-error.log
+
+# Лог-файлы
+logs
+*.log
+
+# Сведения об окружении
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Директории кэша
+.cache
+dist
+build
+tmp
+temp
+
+# Docker файлы
 Dockerfile
+docker-compose.yml
+
+# Makefile
+Makefile
+
+# OS и редактор файлов
+.DS_Store
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.temp
+*.pid
+*.seed
+*.pid.lock
+*.coverage
+.idea
+.vscode
+*.iml
