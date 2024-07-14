@@ -1,21 +1,40 @@
 <script setup lang="ts">
+import { ref, shallowRef } from "vue";
+
+import { useAuthorizationStore } from "@shared/api/auth/model";
+
 import { customSwitch } from "@shared/ui/customSwitch";
 import { customInput } from "@shared/ui/customInput";
 import { customInputPassword } from "@shared/ui/customInputPassword";
-import { ref, shallowRef } from "vue";
 import { authForm } from "@shared/ui/authForm";
 import { customSlider } from "@shared/ui/customSlider";
+
 import trelloImg from "@assets/trello.png";
 import editorImg from "@assets/editor.jpg";
 import gridImg from "@assets/grid.png";
+
+import { useAlert } from "@shared/hooks";
+import { TErrorResolved } from "@shared/utils/errorPreparing.ts";
 
 const rememberMe = shallowRef(false);
 const password = shallowRef("");
 const email = shallowRef("");
 
 
-const defaultSubmit = () => {
-  console.log("sign def");
+const { registration } = useAuthorizationStore();
+
+const defaultSubmit = async () => {
+  const payload = {
+    email: email.value,
+    password: password.value
+  };
+  try {
+    await registration(payload);
+  } catch (e: any) {
+    const error = e as TErrorResolved;
+    useAlert("warning", error.title, 2000);
+  }
+
 };
 const googleSubmit = () => {
   console.log("sign google");

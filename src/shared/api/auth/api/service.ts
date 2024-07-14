@@ -11,8 +11,6 @@ export const signUp = async (payload: ISignUp): TResponseUndefined<IResponseSign
       });
     return response.data;
   } catch (e: any) {
-    const title = errorPreparing(e).title
-    console.log(title);
-    throw Error(e);
+    throw errorPreparing(e);
   }
 };
