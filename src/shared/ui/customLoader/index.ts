@@ -1,0 +1,1 @@
+export {default as customLoader} from './customLoader.vue';
