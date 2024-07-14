@@ -13,4 +13,24 @@
         @apply transition-opacity duration-[750ms];
         transition: visibility 0.75s; /* Добавление transition для visibility */
     }
+    .slide-left-enter-active, .slide-left-leave-active {
+        @apply transition-transform duration-700;
+    }
+    .slide-left-enter-from {
+        @apply translate-x-full;
+    }
+    .slide-left-leave-to {
+        @apply -translate-x-full;
+    }
+
+    /* Slide right animation */
+    .slide-right-enter-active, .slide-right-leave-active {
+        @apply transition-transform duration-700;
+    }
+    .slide-right-enter-from {
+        @apply -translate-x-full;
+    }
+    .slide-right-leave-to {
+        @apply translate-x-full;
+    }
 }
