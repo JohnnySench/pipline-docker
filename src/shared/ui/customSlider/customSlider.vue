@@ -72,6 +72,18 @@ const autoplay = () => {
 
 };
 
+
+const scrollByWheel = (e: WheelEvent) => {
+  const deltaY = e.deltaY;
+  if (deltaY > 0) {
+    carouselRef.value!.scrollLeft += firstSlideWidth.value as number;
+  } else {
+    carouselRef.value!.scrollLeft -= firstSlideWidth.value as number;
+  }
+
+
+}
+
 onMounted(() => {
   searchElWidth();
   autoplay();
@@ -93,6 +105,7 @@ onUnmounted(() => {
       @mousemove.prevent="dragging"
       @mousedown.stop.prevent="dragStart"
       @mouseup.stop.prevent="dragEnd"
+      @wheel.stop.prevent="scrollByWheel"
       class="carousel select-none rounded-l-3xl h-full flex flex-row overflow-hidden"
       :class="{'scroll-smooth': !isDragStart}">
       <img ref="slidesRef"

@@ -30,7 +30,11 @@ const items = ref([
 
 <template>
   <div class="flex flex-row items-center">
-    <custom-slider :items="items" autoplay :duration="5000" />
+    <custom-slider
+      :items="items"
+      autoplay
+      :duration="5000"
+    />
     <auth-form
       title="Nice to see you again"
       :sign-in="false"
