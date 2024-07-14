@@ -1,10 +1,14 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+//https://github.com/gxmari007/vite-plugin-eslint/issues/74
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-expect-error
+import eslint from 'vite-plugin-eslint'
 import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), eslint()],
   server: {
     watch: {
       usePolling: true

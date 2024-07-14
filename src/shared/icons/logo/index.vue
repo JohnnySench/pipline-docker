@@ -11,7 +11,12 @@
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="56" height="56" rx="16" fill="url(#pattern0_503_367)" />
+      <rect
+        width="56"
+        height="56"
+        rx="16"
+        fill="url(#pattern0_503_367)"
+      />
       <defs>
         <pattern
           id="pattern0_503_367"
@@ -19,7 +24,10 @@
           width="1"
           height="1"
         >
-          <use xlink:href="#image0_503_367" transform="scale(0.002)" />
+          <use
+            xlink:href="#image0_503_367"
+            transform="scale(0.002)"
+          />
         </pattern>
         <image
           id="image0_503_367"
@@ -30,7 +38,6 @@
       </defs>
     </svg>
   </div>
-
 </template>
 
 <style scoped></style>

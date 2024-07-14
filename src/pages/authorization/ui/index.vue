@@ -20,7 +20,6 @@ const submit = () => {
 
 <template>
   <div class="flex flex-col gap-8 w-[200px]">
-    {{store.userInfo}}
     <custom-input-password
       v-model="password"
       label-text="Enter password"
@@ -37,12 +36,12 @@ const submit = () => {
       label-visible
     />
 
-    <button @click="submit">CLICK</button>
+    <button @click="submit">
+      CLICK
+    </button>
 
     <custom-dropdown />
-
   </div>
-
 </template>
 
 <style scoped>

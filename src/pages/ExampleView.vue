@@ -4,9 +4,7 @@
 </script>
 
 <template>
-  <div class="h-screen flex items-center justify-center">
-  </div>
-
+  <div>Heelo1</div>
 </template>
 
 <style scoped>

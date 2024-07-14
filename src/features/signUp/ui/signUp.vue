@@ -58,9 +58,9 @@ const items = ref([
           <div class="mt-6 flex items-center justify-between flex-nowrap">
             <div class="flex flex-row items-center gap-2">
               <custom-switch
+                v-model="rememberMe"
                 size="small"
                 class="w-min"
-                v-model="rememberMe"
               />
               <span
                 class="text-xs cursor-pointer select-none"
@@ -70,13 +70,13 @@ const items = ref([
             </div>
             <span
               class="text-[#007AFF] text-xs hover:underline
-            hover:underline-offset-2 cursor-pointer">Forgot password?</span>
+            hover:underline-offset-2 cursor-pointer"
+            >Forgot password?</span>
           </div>
         </div>
       </template>
     </auth-form>
   </div>
-
 </template>
 
 <style scoped>
