@@ -15,6 +15,9 @@ import gridImg from "@assets/grid.png";
 
 import { useAlert } from "@shared/hooks";
 import { TErrorResolved } from "@shared/utils/errorPreparing.ts";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const rememberMe = shallowRef(false);
 const password = shallowRef("");
@@ -23,16 +26,24 @@ const email = shallowRef("");
 
 const { registration } = useAuthorizationStore();
 
+const isLoading = shallowRef(false);
 const defaultSubmit = async () => {
+  isLoading.value = true;
   const payload = {
     email: email.value,
     password: password.value
   };
   try {
     await registration(payload);
+    useAlert("success", "Вы успешно зарегистрировались!", 2000);
+    await router.push({
+      name: "home"
+    });
   } catch (e: any) {
     const error = e as TErrorResolved;
     useAlert("warning", error.title, 2000);
+  } finally {
+    isLoading.value = false;
   }
 
 };

@@ -1,5 +1,4 @@
 import { RouteRecordRaw } from "vue-router";
-import HomeView from "@pages/HomeView.vue";
 import EditorView from "@pages/EditorView.vue";
 import { authorizationPage } from "@pages/authorization/ui/index.ts";
 import SignUpView from "@pages/SignUpView.vue";
@@ -9,8 +8,17 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
-    meta: { transition: "slide-right" }
+    component: () => import('@layouts/generalLayout/generalLayout.vue'),
+    meta: { transition: "slide-right" },
+    redirect: '/',
+    children: [
+      {
+        path: '/',
+        name: 'trello',
+        component: () => import('@pages/HomeView.vue')
+      }
+    ]
+
   },
   {
     path: "/editor",
