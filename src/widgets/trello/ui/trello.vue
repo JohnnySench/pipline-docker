@@ -110,16 +110,18 @@ const onDrop = (e: DragEvent, statusId: number) => {
          @drop="onDrop($event, board.id)"
          class="board w-full text-center rounded-2xl bg-white"
     >
-      <h1 class="select-none text-3xl font-bold p-4">{{ board.title }}</h1>
+      <h1 class="select-none text-3xl font-bold p-4">
+        {{ board.title }} - ({{(collectionTasks[board.id] || []).length}})
+      </h1>
       <div class="content flex flex-col items-center p-4 gap-4">
         <div
-          v-for="task in collectionTasks[board.id.toString()] || []"
+          v-for="(task, index) in collectionTasks[board.id.toString()] || []"
           :key="task.id"
           class="card select-none border rounded w-full p-2 bg-blue-200"
           draggable="true"
           @dragstart="onDragStart($event, task)"
         >
-          {{ task.title }}
+          {{ task.title }} {{index + 1}}
         </div>
       </div>
     </div>
