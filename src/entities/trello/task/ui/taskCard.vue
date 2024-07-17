@@ -4,6 +4,8 @@ import { TaskStyle } from "@shared/config";
 interface IPropsTaskCard {
   statusId: number,
   text: string,
+  description?: string,
+  img?: string
 }
 
 const props = defineProps<IPropsTaskCard>();
@@ -12,10 +14,11 @@ const props = defineProps<IPropsTaskCard>();
 </script>
 
 <template>
-  <div class="flex flex-col bg-[#f4f4f4] rounded-[10px] p-5">
+  <div class="select-none flex flex-col w-full bg-[#f4f4f4] rounded-[10px] p-5">
     <div class="flex flex-col gap-2.5 mb-6">
-      <div :class="TaskStyle[statusId].class" class="w-[60px] h-2"></div>
-      <h4 class="text-base"></h4>
+      <img v-if="Boolean(img)" :src="img" alt="Art" class="rounded-2xl"/>
+      <div :class="TaskStyle[statusId].class" class="w-[60px] h-2 rounded"></div>
+      <h4 class="text-base text-left">{{text}}</h4>
     </div>
 
     <div class="flex flex-row items-center justify-between">

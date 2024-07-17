@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from "vue";
+import { taskCard } from "@entities/trello/task";
+import imgTask1 from "@assets/tasks/imgTask1.jpg";
+import imgTask2 from "@assets/tasks/imgTask2.jpg";
+import imgTask3 from "@assets/tasks/imgTask3.jpg";
+import imgTask4 from "@assets/tasks/imgTask4.jpg";
+import imgTask5 from "@assets/tasks/imgTask5.jpg";
 
 const STATUS_TASK_TO_DO = 1;
 const STATUS_TASK_IN_PROGRESS = 2;
@@ -26,33 +32,38 @@ const tasks = ref(
   [
     {
       id: 1,
-      title: "Таска 1",
-      statusId: 2
+      title: "Old fashioned recipe for preventing allergies and chemical sensitivities",
+      statusId: 2,
+      img: imgTask1
     },
     {
       id: 2,
       title: "Таска 2",
-      statusId: 2
+      statusId: 2,
+      img: imgTask2
     },
     {
       id: 3,
       title: "Таска 3",
-      statusId: 1
+      statusId: 1,
+      img: imgTask3
     },
     {
       id: 4,
       title: "Таска 4",
-      statusId: 1
+      statusId: 1,
+      img: imgTask4
     },
     {
       id: 5,
       title: "Таска 5",
-      statusId: 1
+      statusId: 1,
+      img: imgTask5
     },
     {
       id: 6,
       title: "Таска 6",
-      statusId: 3
+      statusId: 3,
     }
   ]
 );
@@ -72,8 +83,9 @@ const collectionTasks = computed<Record<string, ITask[]>>(() => {
 
 interface ITask {
   id: number,
-  title: string;
-  statusId: number;
+  title: string,
+  statusId: number,
+  img?: string,
 }
 
 const isDragging = shallowRef(false);
@@ -102,34 +114,33 @@ const onDrop = (e: DragEvent, statusId: number) => {
 </script>
 
 <template>
-  <div class="board w-screen h-screen p-10 flex flex-row gap-6 bg-gray-200">
+  <div class="board w-screen h-screen p-10 flex flex-row gap-10 bg-gray-200">
     <div v-for="board in boards"
          :key="board.id"
          @dragenter.prevent
          @dragover.prevent
          @drop="onDrop($event, board.id)"
-         class="board w-full text-center rounded-2xl bg-white"
+         class="board w-full overflow-hidden text-center rounded-2xl bg-white"
     >
       <h1 class="select-none text-3xl font-bold p-4">
-        {{ board.title }} - ({{(collectionTasks[board.id] || []).length}})
+        {{ board.title }} - ({{ (collectionTasks[board.id] || []).length }})
       </h1>
-      <div class="content flex flex-col items-center p-4 gap-4">
-        <div
-          v-for="(task, index) in collectionTasks[board.id.toString()] || []"
+      <div class="no-scrollbar flex flex-col overflow-auto h-[80%] items-center px-4 pb-10 gap-4">
+        <task-card
+          v-for="(task, _) in collectionTasks[board.id.toString()] || []"
           :key="task.id"
-          class="card select-none border rounded w-full p-2 bg-blue-200"
+          :status-id="task.statusId"
+          :text="task.title"
+          :img="task.img"
+          class="select-none"
           draggable="true"
           @dragstart="onDragStart($event, task)"
-        >
-          {{ task.title }} {{index + 1}}
-        </div>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="postcss">
-.placeholder {
-  @apply bg-white
-}
+
 </style>
