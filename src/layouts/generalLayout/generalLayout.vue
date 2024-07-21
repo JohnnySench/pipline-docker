@@ -4,7 +4,7 @@ import { customSidebar } from "@widgets/sidebar/ui";
 
 <template>
   <div class="w-screen h-screen bg-gray-200 flex flex-row">
-    <customSidebar />
+    <custom-sidebar />
     <router-view v-slot="{Component, route}">
       <transition :name="route.meta.transition || 'fade'">
         <component :is="Component" />

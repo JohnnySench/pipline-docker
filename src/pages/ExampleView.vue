@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import {trello} from '@widgets/trello/ui'
 
 
 </script>
 
 <template>
-  <trello />
+  <h1>Example</h1>
 </template>
 
 <style scoped>

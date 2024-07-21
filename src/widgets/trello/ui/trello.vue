@@ -43,6 +43,7 @@ const tasks = ref(
     {
       id: 1,
       title: "Old fashioned recipe for preventing allergies and chemical sensitivities",
+      description: "Why read motivational sayings? For motivation! You might need a bit, if you can use last year’s list of goals this year because it’s as good as new.",
       statusId: 2,
       img: imgTask1,
       subscribers: [imgSub1, imgSub2],
@@ -108,6 +109,7 @@ const collectionTasks = computed<Record<string, ITask[]>>(() => {
 interface ITask {
   id: number,
   title: string,
+  description?: string,
   statusId: number,
   img?: string,
   subscribers?: string[],
