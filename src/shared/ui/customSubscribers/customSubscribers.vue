@@ -6,6 +6,11 @@ interface IPropsCustomSubscribers {
   imgsSrc: string[];
 }
 
+interface IEmitsCustomSubscribers {
+  (e: "click:add-sub"): void;
+}
+
+const emits = defineEmits<IEmitsCustomSubscribers>();
 const props = defineProps<IPropsCustomSubscribers>();
 
 const spacingClassesImages = (index: number): Record<string, string> => {
@@ -43,6 +48,7 @@ const spacingButtonStyle = computed<StyleValue>(() => {
         size="small"
         variant="filled"
         class="text-white"
+        @click:icon="emits('click:add-sub')"
       />
     </button>
   </div>

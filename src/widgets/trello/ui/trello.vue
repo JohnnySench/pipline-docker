@@ -140,14 +140,17 @@ const onDrop = (e: DragEvent, statusId: number) => {
 };
 
 const onClickChat = () => {
-  console.log('onClickChat click');
-}
+  console.log("onClickChat click");
+};
 const onClickFavorite = () => {
-  console.log('onClickFavorite click');
-}
+  console.log("onClickFavorite click");
+};
 const onClickBolt = () => {
-  console.log('onClickBolt click');
-}
+  console.log("onClickBolt click");
+};
+const onClickAddSub = () => {
+  console.log("onClickAddSub click");
+};
 
 
 </script>
@@ -177,7 +180,9 @@ const onClickBolt = () => {
         >
           <template #subscribes>
             <custom-subscribers
-              :imgs-src="task.subscribers || []" />
+              :imgs-src="task.subscribers || []"
+              @click:add-sub="onClickAddSub"
+            />
           </template>
           <template #actions>
             <actions-button
