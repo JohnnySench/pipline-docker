@@ -2,6 +2,7 @@
 import { computed, ref, shallowRef } from "vue";
 import { taskCard } from "@entities/trello/task";
 import { customSubscribers } from "@shared/ui/customSubscribers";
+import { actionsButton } from "@features/trello/actionsButton/ui";
 import imgTask1 from "@assets/tasks/imgTask1.jpg";
 import imgTask2 from "@assets/tasks/imgTask2.jpg";
 import imgTask3 from "@assets/tasks/imgTask3.jpg";
@@ -45,20 +46,25 @@ const tasks = ref(
       statusId: 2,
       img: imgTask1,
       subscribers: [imgSub1, imgSub2],
+      message: 111
     },
     {
       id: 2,
       title: "Таска 2",
       statusId: 2,
       img: imgTask2,
-      subscribers: [imgSub3, imgSub4]
+      subscribers: [imgSub3, imgSub4],
+      pinned: 21
     },
     {
       id: 3,
       title: "Таска 3",
       statusId: 1,
       img: imgTask3,
-      subscribers: [imgSub5, imgSub6]
+      subscribers: [imgSub5, imgSub6],
+      message: 11,
+      pinned: 21,
+      like: 7
     },
     {
       id: 4,
@@ -72,12 +78,16 @@ const tasks = ref(
       title: "Таска 5",
       statusId: 1,
       img: imgTask5,
-      subscribers: [imgSub5]
+      subscribers: [imgSub5],
+      message: 111,
+      pinned: 211,
+      like: 71
     },
     {
       id: 6,
       title: "Таска 6",
-      statusId: 3
+      statusId: 3,
+      message: 7
     }
   ]
 );
@@ -100,7 +110,10 @@ interface ITask {
   title: string,
   statusId: number,
   img?: string,
-  subscribers?: string[]
+  subscribers?: string[],
+  message?: number,
+  pinned?: number,
+  like?: number
 }
 
 const isDragging = shallowRef(false);
@@ -125,6 +138,16 @@ const onDrop = (e: DragEvent, statusId: number) => {
     });
   }
 };
+
+const onClickChat = () => {
+  console.log('onClickChat click');
+}
+const onClickFavorite = () => {
+  console.log('onClickFavorite click');
+}
+const onClickBolt = () => {
+  console.log('onClickBolt click');
+}
 
 
 </script>
@@ -153,7 +176,18 @@ const onDrop = (e: DragEvent, statusId: number) => {
           @dragstart="onDragStart($event, task)"
         >
           <template #subscribes>
-            <custom-subscribers :imgs-src="task.subscribers || []"/>
+            <custom-subscribers
+              :imgs-src="task.subscribers || []" />
+          </template>
+          <template #actions>
+            <actions-button
+              :message-count="task.message || 0"
+              :pinned-count="task.pinned || 0"
+              :like-count="task.like || 0"
+              @click:icon-chat="onClickChat"
+              @click:icon-favorite="onClickFavorite"
+              @click:icon-bolt="onClickBolt"
+            />
           </template>
         </task-card>
       </div>
