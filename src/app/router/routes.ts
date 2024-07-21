@@ -8,17 +8,16 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "home",
-    component: () => import('@layouts/generalLayout/generalLayout.vue'),
+    component: () => import("@layouts/generalLayout"),
     meta: { transition: "slide-right" },
-    redirect: '/',
+    redirect: "/",
     children: [
       {
-        path: '/',
-        name: 'trello',
-        component: () => import('@pages/HomeView.vue')
+        path: "/",
+        name: "trello",
+        component: () => import("@pages/HomeView.vue")
       }
     ]
-
   },
   {
     path: "/editor",
