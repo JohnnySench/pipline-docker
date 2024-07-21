@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { customSwitch } from "@shared/ui/customSwitch";
 
 interface IProps {
@@ -10,13 +10,16 @@ interface IProps {
 const props = defineProps<IProps>();
 
 const router = useRouter();
+const route = useRoute();
+
+
 
 const switchLightMode = shallowRef(true);
 
 const navItems = computed(() => {
   return [
     {
-      text: "Dashboard",
+      text: "Trello",
       icon: "home"
     },
     {
@@ -69,9 +72,10 @@ const navItems = computed(() => {
       v-for="(item, index) in navItems"
       :key="index"
       class="py-3 px-4 flex flex-row items-center cursor-pointer hover:bg-gray-100 hover:rounded-2xl"
+      :class="{'bg-gray-100 rounded-2xl': String(route.name).includes(item.text.toLowerCase())}"
     >
       <div class="flex gap-4 justify-center text-nowrap" @click="item.action">
-        <span :class="{'!hidden !p-0': item?.switch && !fullWidth}"
+        <span :class="[{'!hidden !p-0': item?.switch && !fullWidth}]"
               class="material-icons-outlined">{{ item.icon }}
         </span>
         <span v-if="fullWidth">{{ item.text }}</span>
