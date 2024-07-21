@@ -8,8 +8,13 @@ interface IPropsTaskCard {
   img?: string
 }
 
-const props = defineProps<IPropsTaskCard>();
+interface ISlotsCustomSubscribers {
+  subscribes: (props: {}) => any,
+  actions: (props: {}) => any,
+}
 
+const props = defineProps<IPropsTaskCard>();
+const slots = defineSlots<ISlotsCustomSubscribers>()
 
 </script>
 

@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from "vue";
 import { taskCard } from "@entities/trello/task";
+import { customSubscribers } from "@shared/ui/customSubscribers";
 import imgTask1 from "@assets/tasks/imgTask1.jpg";
 import imgTask2 from "@assets/tasks/imgTask2.jpg";
 import imgTask3 from "@assets/tasks/imgTask3.jpg";
 import imgTask4 from "@assets/tasks/imgTask4.jpg";
 import imgTask5 from "@assets/tasks/imgTask5.jpg";
+
+import imgSub1 from "@assets/subs/sub1.png";
+import imgSub2 from "@assets/subs/sub2.png";
+import imgSub3 from "@assets/subs/sub3.png";
+import imgSub4 from "@assets/subs/sub4.png";
+import imgSub5 from "@assets/subs/sub5.png";
+import imgSub6 from "@assets/subs/sub6.png";
+
 
 const STATUS_TASK_TO_DO = 1;
 const STATUS_TASK_IN_PROGRESS = 2;
@@ -34,31 +43,36 @@ const tasks = ref(
       id: 1,
       title: "Old fashioned recipe for preventing allergies and chemical sensitivities",
       statusId: 2,
-      img: imgTask1
+      img: imgTask1,
+      subscribers: [imgSub1, imgSub2],
     },
     {
       id: 2,
       title: "Таска 2",
       statusId: 2,
-      img: imgTask2
+      img: imgTask2,
+      subscribers: [imgSub3, imgSub4]
     },
     {
       id: 3,
       title: "Таска 3",
       statusId: 1,
-      img: imgTask3
+      img: imgTask3,
+      subscribers: [imgSub5, imgSub6]
     },
     {
       id: 4,
       title: "Таска 4",
       statusId: 1,
-      img: imgTask4
+      img: imgTask4,
+      subscribers: [imgSub1, imgSub2, imgSub3, imgSub4, imgSub5, imgSub6]
     },
     {
       id: 5,
       title: "Таска 5",
       statusId: 1,
-      img: imgTask5
+      img: imgTask5,
+      subscribers: [imgSub5]
     },
     {
       id: 6,
@@ -86,6 +100,7 @@ interface ITask {
   title: string,
   statusId: number,
   img?: string,
+  subscribers?: string[]
 }
 
 const isDragging = shallowRef(false);
@@ -128,7 +143,7 @@ const onDrop = (e: DragEvent, statusId: number) => {
       </h1>
       <div class="no-scrollbar flex flex-col overflow-auto h-[80%] items-center px-4 pb-10 gap-4">
         <task-card
-          v-for="(task) in collectionTasks[board.id.toString()] || []"
+          v-for="(task, _) in collectionTasks[board.id.toString()] || []"
           :key="task.id"
           :status-id="task.statusId"
           :text="task.title"
@@ -137,7 +152,9 @@ const onDrop = (e: DragEvent, statusId: number) => {
           draggable="true"
           @dragstart="onDragStart($event, task)"
         >
-          <template #></template>
+          <template #subscribes>
+            <custom-subscribers :imgs-src="task.subscribers || []"/>
+          </template>
         </task-card>
       </div>
     </div>
