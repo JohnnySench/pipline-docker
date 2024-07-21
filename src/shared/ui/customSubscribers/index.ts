@@ -1,0 +1,1 @@
+export { default as customSubscribers } from "./customSubscribers.vue";

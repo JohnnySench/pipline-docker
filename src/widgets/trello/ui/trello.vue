@@ -63,7 +63,7 @@ const tasks = ref(
     {
       id: 6,
       title: "Таска 6",
-      statusId: 3,
+      statusId: 3
     }
   ]
 );
@@ -75,9 +75,9 @@ const tasksIntoInDone = computed(() => tasks.value.filter(task => task.statusId 
 
 const collectionTasks = computed<Record<string, ITask[]>>(() => {
   return {
-    "1": (tasksIntoToDo.value),
-    "2": (tasksIntoInProgress.value),
-    "3": (tasksIntoInDone.value)
+    "1": tasksIntoToDo.value,
+    "2": tasksIntoInProgress.value,
+    "3": tasksIntoInDone.value
   };
 });
 
@@ -111,6 +111,7 @@ const onDrop = (e: DragEvent, statusId: number) => {
   }
 };
 
+
 </script>
 
 <template>
@@ -127,7 +128,7 @@ const onDrop = (e: DragEvent, statusId: number) => {
       </h1>
       <div class="no-scrollbar flex flex-col overflow-auto h-[80%] items-center px-4 pb-10 gap-4">
         <task-card
-          v-for="(task, _) in collectionTasks[board.id.toString()] || []"
+          v-for="(task) in collectionTasks[board.id.toString()] || []"
           :key="task.id"
           :status-id="task.statusId"
           :text="task.title"
@@ -135,7 +136,9 @@ const onDrop = (e: DragEvent, statusId: number) => {
           class="select-none"
           draggable="true"
           @dragstart="onDragStart($event, task)"
-        />
+        >
+          <template #></template>
+        </task-card>
       </div>
     </div>
   </div>
