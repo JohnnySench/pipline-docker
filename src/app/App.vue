@@ -4,8 +4,6 @@ import { onMounted, onUnmounted } from "vue";
 
 const { setPlatform } = useScreenStore();
 
-console.log(123)
-
 const onResize = (() => setPlatform(window.innerWidth));
 
 onMounted(() => {
